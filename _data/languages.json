@@ -2,11 +2,11 @@
   {
     "name": "JavaScript",
     "website": "https://npmjs.com",
-    "repo": "https://github.com"
+    "repo": "https://github.com/nodejs/node"
   },
   {
     "name": "Python",
     "website": "https://python.org",
-    "repo": "https://github.com"
+    "repo": "https://github.com/python/cpython"
   }
 ]
