@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Code Lang Library</title>
+  <style>body { font-family: sans-serif; max-width: 600px; margin: 40px auto; padding: 0 20px; }</style>
+</head>
+<body>
+  <h1>Programming Language Library</h1>
+  
+  <h2>Add a New Language</h2>
+  <form id="langForm" style="margin-bottom: 30px;">
+    <input type="text" id="name" placeholder="Language Name" required style="width: 100%; margin-bottom: 10px; padding: 8px;"><br>
+    <input type="url" id="website" placeholder="Official Website URL" required style="width: 100%; margin-bottom: 10px; padding: 8px;"><br>
+    <input type="url" id="repo" placeholder="GitHub Repository URL" required style="width: 100%; margin-bottom: 15px; padding: 8px;"><br>
+    <button type="submit" style="padding: 10px 20px; background: #0070f3; color: white; border: none; border-radius: 4px; cursor: pointer;">Add to Library</button>
+  </form>
+
+  <h2>Registered Languages</h2>
+  <div id="languagesList"></div>
+
+  <script>
+    const defaultData = [
+      { name: 'JavaScript', website: 'https://npmjs.com', repo: 'https://github.com' },
+      { name: 'Python', website: 'https://python.org', repo: 'https://github.com' }
+    ];
+
+    function getLanguages() {
+      const stored = localStorage.getItem('languages');
+      if (!stored) {
+        localStorage.setItem('languages', JSON.stringify(defaultData));
+        return defaultData;
+      }
+      return JSON.parse(stored);
+    }
+
+    function renderLanguages() {
+      const languages = getLanguages();
+      const listDiv = document.getElementById('languagesList');
+      listDiv.innerHTML = languages.map(lang => `
+        <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; border-radius: 5px;">
+          <h3>${lang.name}</h3>
+          <p>
+            <a href="${lang.website}" target="_blank">Website</a> | 
+            <a href="${lang.repo}" target="_blank">GitHub</a>
+          </p>
+        </div>
+      `).join('');
+    }
+
+    document.getElementById('langForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const languages = getLanguages();
+      languages.push({
+        name: document.getElementById('name').value,
+        website: document.getElementById('website').value,
+        repo: document.getElementById('repo').value
+      });
+      localStorage.setItem('languages', JSON.stringify(languages));
+      renderLanguages();
+      document.getElementById('langForm').reset();
+    });
+
+    renderLanguages();
+  </script>
+</body>
+</html>
