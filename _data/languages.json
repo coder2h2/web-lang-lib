@@ -1,0 +1,12 @@
+[
+  {
+    "name": "JavaScript",
+    "website": "https://npmjs.com",
+    "repo": "https://github.com"
+  },
+  {
+    "name": "Python",
+    "website": "https://python.org",
+    "repo": "https://github.com"
+  }
+]

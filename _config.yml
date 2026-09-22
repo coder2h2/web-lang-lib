@@ -1,0 +1,4 @@
+title: Code Lang Library
+theme: minima
+plugins:
+  - jekyll-feed
